@@ -1,0 +1,35 @@
+.component-25-1 {
+  align-items: center;
+  background: linear-gradient(180deg, #e1eff5 0%, #7a9aa8 100%);
+  border-radius: 21px;
+  box-shadow: 0px 3px 6px #00000029;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 207px;
+  padding: 2px 0;
+  width: 322px;
+}
+
+.overlap-group1-1 {
+  align-items: flex-start;
+  background-color: var(--white);
+  border-radius: 21px;
+  display: flex;
+  height: 175px;
+  min-width: 318px;
+  padding: 11.7px 84.4px;
+  position: relative;
+}
+
+.name {
+  letter-spacing: 0;
+  line-height: 12px;
+  margin-left: 2.0px;
+  margin-top: 8px;
+  min-height: 17px;
+  min-width: 34px;
+  text-align: center;
+  white-space: nowrap;
+}
+

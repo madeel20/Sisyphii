@@ -1,0 +1,83 @@
+.rescue-animals-1 {
+  align-items: flex-start;
+  background: linear-gradient(180deg, #e1eff5 0%, #7a9aa8 100%);
+  background-color: rgba(255,255,255,1.0);
+  display: flex;
+  flex-direction: column;
+  height: 812px;
+  width: 375px;
+}
+
+.flex-row-4 {
+  align-items: flex-end;
+  display: flex;
+  margin-left: 38px;
+  margin-top: -7px;
+  min-width: 210px;
+}
+
+.place-2 {
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-bottom: 9.5px;
+  min-height: 19px;
+  min-width: 36px;
+  white-space: nowrap;
+}
+
+.logo-sisyphii-1 {
+  height: 66px;
+  margin-left: 55px;
+  object-fit: cover;
+  width: 41px;
+}
+
+.sisyphii-1 {
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-bottom: 6.5px;
+  margin-left: 6px;
+  min-height: 25px;
+  min-width: 72px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.overlap-group2-2 {
+  align-items: flex-end;
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  min-height: 680px;
+  padding: 29px 26px;
+  position: relative;
+  width: 375px;
+}
+
+.overlap-group3-1 {
+  align-items: flex-end;
+  align-self: center;
+  background: linear-gradient(180deg, #095950 0%, #043630 100%);
+  border-radius: 16px;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  height: 59px;
+  justify-content: flex-end;
+  margin-left: 1.0px;
+  margin-top: 47px;
+  min-width: 300px;
+  padding: 17.5px 70px;
+}
+
+.add-new-rescue-animal {
+  letter-spacing: 0;
+  line-height: 14px;
+  min-height: 19px;
+  min-width: 158px;
+  white-space: nowrap;
+}
+

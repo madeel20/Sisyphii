@@ -1,0 +1,39 @@
+.component-16-4 {
+  align-items: flex-start;
+  display: flex;
+  margin-bottom: 4.5px;
+  margin-left: 16px;
+  min-width: 31px;
+}
+
+.overlap-group {
+  height: 16px;
+  position: relative;
+  width: 31px;
+}
+
+.rectangle-96 {
+  background: linear-gradient(180deg, #d1c5c6 0%, #a27e7e 100%);
+  border-radius: 4px;
+  height: 8px;
+  left: 3px;
+  position: absolute;
+  top: 5px;
+  width: 28px;
+}
+
+.ellipse-15 {
+  background: linear-gradient(180deg, #095950 0%, #043630 100%);
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px #00000029;
+  height: 16px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 16px;
+}
+
+.component-16-4.component-16-5 {
+  margin-bottom: unset;
+}
+

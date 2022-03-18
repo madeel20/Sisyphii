@@ -1,0 +1,147 @@
+:root { 
+  --alto: #d9e5db;
+  --alto-2: #ddd9e3;
+  --dark-text: #053d36;
+  --dove-gray: #707070;
+  --ebony-clay: #263238;
+  --grey-text: #979b99;
+  --lilac: #e5d9df;
+  --mountain-mist: #989b99;
+  --nude: #e5dfd9;
+  --tiber: #053e37;
+  --white: #ffffff;
+ 
+  --font-size-l: 16px;
+  --font-size-m: 14px;
+  --font-size-s: 12px;
+  --font-size-xl: 17px;
+  --font-size-xs: 10px;
+  --font-size-xxl: 18px;
+  --font-size-xxxl: 20px;
+ 
+  --font-family-helveticaneue-bold: "HelveticaNeue-Bold", Helvetica;
+  --font-family-helveticaneue-regular: "HelveticaNeue-Regular", Helvetica;
+}
+.helveticaneue-bold-tiber-14px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-bold-mountain-mist-14px {
+  color: var(--grey-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-regular-normal-tiber-10px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.helveticaneue-bold-tiber-18px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-xxl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-regular-normal-tiber-12px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.helveticaneue-regular-normal-tiber-20px {
+  color: var(--tiber);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-xxxl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.helveticaneue-regular-normal-tiber-14px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.helveticaneue-bold-tiber-12px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-bold-tiber-16px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-bold-bon-jour-14px {
+  color: var(--lilac);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-bold-tiber-10px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-bold-tiber-17px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-regular-normal-bon-jour-20px {
+  color: var(--lilac);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-xxxl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.helveticaneue-bold-mountain-mist-14px-2 {
+  color: var(--mountain-mist);
+  font-family: var(--font-family-helveticaneue-bold);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.helveticaneue-regular-normal-tiber-16px {
+  color: var(--dark-text);
+  font-family: var(--font-family-helveticaneue-regular);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.border-1px-dove-gray {
+  border: 1px solid var(--dove-gray);
+}

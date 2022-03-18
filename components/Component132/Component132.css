@@ -1,0 +1,41 @@
+.group-48 {
+  align-items: center;
+  background-color: var(--lilac);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  min-height: 165px;
+  padding: 4px 0;
+  width: 158px;
+}
+
+.name-5 {
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-right: 10.0px;
+  margin-top: 2px;
+  min-height: 21px;
+  min-width: 44px;
+  white-space: nowrap;
+}
+
+.overlap-group-7 {
+  align-items: flex-start;
+  background-color: var(--nude);
+  border-radius: 9px;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  height: 133px;
+  justify-content: flex-end;
+  min-width: 158px;
+  padding: 4.5px 8px;
+}
+
+.species-felinebree {
+  height: 121px;
+  letter-spacing: 0;
+  line-height: 25px;
+  width: 136px;
+}
+

@@ -1,0 +1,127 @@
+.budget-for-pet-care {
+  align-items: flex-start;
+  background: linear-gradient(180deg, #e3d9da 0%, #c4a2a2 100%);
+  background-color: rgba(255,255,255,1.0);
+  display: flex;
+  height: 812px;
+  width: 375px;
+}
+
+.overlap-group2-8 {
+  align-items: center;
+  background-color: var(--lilac);
+  border-radius: 22px;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  min-height: 747px;
+  padding: 22.5px 0;
+  position: relative;
+  width: 375px;
+}
+
+.overlap-group3-7 {
+  background-color: var(--white);
+  border-radius: 9px;
+  height: 20px;
+  margin-left: 1.0px;
+  margin-top: 6px;
+  width: 320px;
+}
+
+.pet-care-budget-1 {
+  align-self: flex-start;
+  letter-spacing: 0;
+  line-height: 18px;
+  margin-left: 28px;
+  margin-top: 34px;
+  min-height: 24px;
+  white-space: nowrap;
+}
+
+.what-is-your-occupation-1 {
+  align-self: flex-start;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-left: 26px;
+  margin-top: 90px;
+  min-height: 19px;
+  white-space: nowrap;
+}
+
+.overlap-group-11 {
+  align-items: flex-end;
+  background-color: var(--white);
+  border-radius: 9px;
+  display: flex;
+  height: 35px;
+  margin-left: 2.0px;
+  margin-top: 12px;
+  min-width: 341px;
+  padding: 5.5px 25px;
+}
+
+.tenant-at-moms-basement-1 {
+  letter-spacing: 0;
+  line-height: 14px;
+  min-height: 19px;
+  min-width: 182px;
+  white-space: nowrap;
+}
+
+.what-is-your-monthly-1 {
+  align-self: flex-start;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-left: 25px;
+  margin-top: 50px;
+  min-height: 19px;
+  white-space: nowrap;
+}
+
+.price-1 {
+  letter-spacing: 0;
+  line-height: 14px;
+  min-height: 19px;
+  min-width: 72px;
+  white-space: nowrap;
+}
+
+.in-case-of-the-pets-1 {
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-right: 7.0px;
+  margin-top: 51px;
+  min-height: 36px;
+  min-width: 318px;
+  white-space: nowrap;
+}
+
+.flex-row-27 {
+  align-items: flex-start;
+  display: flex;
+  height: 19px;
+  margin-left: 2.0px;
+  margin-top: 126px;
+  min-width: 317px;
+}
+
+.place-9 {
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 14px;
+  min-height: 19px;
+  min-width: 36px;
+  white-space: nowrap;
+}
+
+.next-3 {
+  cursor: pointer;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-left: 248px;
+  min-height: 19px;
+  white-space: nowrap;
+}
+

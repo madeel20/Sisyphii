@@ -1,0 +1,129 @@
+.component-22-1 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  left: 104px;
+  min-height: 103px;
+  position: absolute;
+  top: 0;
+  width: 232px;
+}
+
+.overlap-group-6 {
+  align-items: flex-end;
+  background-color: var(--white);
+  border-radius: 9px;
+  display: flex;
+  height: 35px;
+  justify-content: flex-end;
+  min-width: 232px;
+  padding: 3px 8px;
+}
+
+.yes {
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-bottom: 2.5px;
+  min-height: 19px;
+  min-width: 25px;
+  white-space: nowrap;
+}
+
+.overlap-group1-3 {
+  align-items: flex-start;
+  background: linear-gradient(180deg, #095950 0%, #043630 100%);
+  border-radius: 14px;
+  display: flex;
+  height: 28px;
+  margin-left: 66px;
+  min-width: 28px;
+  padding: 9px 6.0px;
+}
+
+.union-6-1 {
+  height: 9px;
+  object-fit: cover;
+  width: 13px;
+}
+
+.line-22-1 {
+  height: 1px;
+  margin-right: 1.0px;
+  margin-top: 34px;
+  object-fit: cover;
+  width: 190px;
+}
+
+.component-22-1.component-22-4 {
+  left: 0;
+  top: 200px;
+  width: 340px;
+}
+
+.component-22-1.component-22-4 .overlap-group-6,
+.component-22-1.component-22-8 .overlap-group-6,
+.component-22-1.component-22-9 .overlap-group-6,
+.component-22-1.component-22-2 .overlap-group-6 {
+  min-width: 340px;
+}
+
+.component-22-1.component-22-4 .overlap-group1-3,
+.component-22-1.component-22-8 .overlap-group1-3,
+.component-22-1.component-22-9 .overlap-group1-3,
+.component-22-1.component-22-2 .overlap-group1-3 {
+  margin-left: 120px;
+}
+
+.component-22-1.component-22-4 .line-22-1,
+.component-22-1.component-22-8 .line-22-1,
+.component-22-1.component-22-9 .line-22-1,
+.component-22-1.component-22-3 .line-22-1,
+.component-22-1.component-22-2 .line-22-1 {
+  width: 298px;
+}
+
+.component-22-1.component-22-3 {
+  left: 0;
+  top: 100px;
+  width: 340px;
+}
+
+.component-22-1.component-22-3 .overlap-group-6 {
+  align-items: center;
+  min-width: 340px;
+}
+
+.component-22-1.component-22-3 .yes {
+  margin-bottom: unset;
+  margin-top: 1.0px;
+  min-width: 88px;
+}
+
+.component-22-1.component-22-3 .overlap-group1-3 {
+  align-self: flex-end;
+  margin-left: 89px;
+}
+
+.component-22-1.component-22-2 {
+  left: 0;
+  width: 340px;
+}
+
+.component-22-1.component-22-8 {
+  left: unset;
+  margin-right: 3.0px;
+  margin-top: 11px;
+  position: unset;
+  top: unset;
+  width: 340px;
+}
+
+.component-22-1.component-22-9 {
+  left: unset;
+  margin-right: 1.0px;
+  margin-top: 11px;
+  position: unset;
+  top: unset;
+  width: 340px;
+}
+
