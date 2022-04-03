@@ -69,7 +69,7 @@ function BottomNavigation() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={RescueAnimalForm }
         options={{
           tabBarIcon: ({ color }) => <ProfileIcon fill={color} />,
         }}
