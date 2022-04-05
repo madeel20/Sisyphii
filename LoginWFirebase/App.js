@@ -24,6 +24,10 @@ import CharityHome from "./src/screens/Charity/CharityHome";
 import UserHome from "./src/screens/User/UserHome";
 import { ActivityIndicator } from "react-native";
 import Background from "./src/components/Background";
+import AddPetForm from "./src/screens/Charity/AddPetForm";
+import PetList from "./src/screens/Charity/PetList";
+import CharityProfile from "./src/screens/Charity/Profile";
+import PetDetails from "./src/screens/User/PetDetails";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -99,7 +103,7 @@ export default function App() {
 
           {user &&
             (role === "charity" ? (
-              <Stack.Screen name="HomeScreen" component={CharityNavigator} />
+              <Stack.Screen name="HomeScreen" component={CharityNavigation} />
             ) : (
               <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
             ))}
@@ -116,7 +120,7 @@ function BottomNavigation() {
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={UserHome}
+        component={UserHomeStack}
         options={{
           tabBarIcon: ({ color }) => <HomeIcon fill={color} />,
         }}
@@ -140,10 +144,44 @@ function DrawerNavigator() {
   );
 }
 
-function CharityNavigator() {
+function UserHomeStack() {
   return (
     <Drawer.Navigator drawerContent={DrawerContent}>
-      <Drawer.Screen name="HomeScreen" component={CharityNavigation} />
+      <Drawer.Screen
+        name="HomeScreen"
+        component={UserHome}
+        // component={AddPetForm}
+      />
+      <Drawer.Screen
+        name="PetDetails"
+        component={PetDetails}
+        // component={AddPetForm}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function CharityHomeStack() {
+  return (
+    <Drawer.Navigator drawerContent={DrawerContent}>
+      <Drawer.Screen
+        name="HomeScreen"
+        component={CharityHome}
+        // component={AddPetForm}
+      />
+    </Drawer.Navigator>
+  );
+}
+
+function CharityPetStack() {
+  return (
+    <Drawer.Navigator drawerContent={DrawerContent}>
+      <Drawer.Screen
+        name="PetList"
+        component={PetList}
+        // component={AddPetForm}
+      />
+      <Drawer.Screen name="AddAPetForm" component={AddPetForm} />
     </Drawer.Navigator>
   );
 }
@@ -153,14 +191,21 @@ function CharityNavigation() {
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={CharityHome}
+        component={CharityHomeStack}
         options={{
           tabBarIcon: ({ color }) => <HomeIcon fill={color} />,
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={RescueAnimalForm}
+        name="Pets"
+        component={CharityPetStack}
+        options={{
+          tabBarIcon: ({ color }) => <ProfileIcon fill={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={CharityProfile}
         options={{
           tabBarIcon: ({ color }) => <ProfileIcon fill={color} />,
         }}

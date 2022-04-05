@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "3.2.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/drawer": "^5.11.4",
@@ -15,6 +16,7 @@
     "@react-navigation/stack": "^5.12.8",
     "expo": "^41.0.1",
     "expo-google-app-auth": "^8.1.4",
+    "expo-image-picker": "^12.0.2",
     "expo-modules-core": "^0.6.5",
     "expo-status-bar": "~1.0.4",
     "firebase": "8.2.3",

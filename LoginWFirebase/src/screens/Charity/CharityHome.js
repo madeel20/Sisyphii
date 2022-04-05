@@ -8,13 +8,13 @@ export default function CharityHome({ navigation }) {
     <>
       <TopBar title="Home" />
       <View style={styles.container}>
-        <Button
+        {/* <Button
           mode="contained"
-          onPress={() => navigation.navigate('RescueAnimalForm')}
+          onPress={() => navigation.navigate('AddAPetForm')}
           style={{ width: 300 }}
         >
-          Charity Screen
-        </Button>
+          Add a Pet
+        </Button> */}
       </View>
     </>
   )
