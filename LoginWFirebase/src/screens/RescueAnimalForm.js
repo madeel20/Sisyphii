@@ -71,6 +71,9 @@ export default function RescueAnimalForm({ navigation }) {
       <Button mode="outlined" onPress={() => editName()}>
         Edit
       </Button>
+      <Button mode="outlined" onPress={() => firebase.auth().signOut()}>
+        Sign Out
+      </Button>
     </>
   )
 }
