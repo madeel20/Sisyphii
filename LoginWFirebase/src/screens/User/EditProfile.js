@@ -17,16 +17,11 @@ import Background from "../../components/Background";
 import { theme } from "../../core/theme";
 import CImagePicker from "../../components/CImagePicker";
 
-function AddPetForm({ navigation }) {
+function AddApplication({ navigation }) {
   const [values, setValues] = useState({
     name: "",
     dateOfBirth: new Date(),
-    species: "",
-    breed: "",
-    gender: "male",
-    desexStatus: "",
-    vaccination: "vaccinated",
-    homeStatus: "",
+    contact: 0,
   });
   const [loading, setLoading] = useState(false);
 
@@ -48,12 +43,7 @@ function AddPetForm({ navigation }) {
         setValues({
           name: "",
           dateOfBirth: new Date(),
-          species: "",
-          breed: "",
-          gender: "male",
-          desexStatus: "",
-          vaccination: "vaccinated",
-          homeStatus: "",
+          contact: 0,
         });
         navigation.navigate("PetList");
       })
@@ -177,4 +167,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPetForm;
+export default AddApplication;

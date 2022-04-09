@@ -21,12 +21,25 @@ export default function CPetItem({ pet, onClick }) {
         />
         {/* <Title>Name: {pet?.name}</Title> */}
         <Paragraph style={{marginTop:12}}>
-          Species: {pet?.species}, Breed: {pet?.breed}{" "}
+          Species: {pet?.species}{" "} 
+        </Paragraph>
+        <Paragraph>
+          Breed: {pet?.breed}{" "}
         </Paragraph>
       </Card.Content>
+      {/* <Card.Actions>
+        <Paragraph style={{marginLeft:10}}>
+          dateOfBirth: {getFormattedDate(new Date(pet?.dateOfBirth?.seconds))}{" "}
+        </Paragraph>
+      </Card.Actions> */}
       <Card.Actions>
         <Paragraph style={{marginLeft:10}}>
-          Vaccinated: {pet?.vaccination}, Homing Status: {pet?.homeStatus},{" "}
+          Vaccinated: {pet?.vaccination}
+        </Paragraph>
+      </Card.Actions>
+      <Card.Actions>
+        <Paragraph style={{marginLeft:10}}>
+          Homing Status: {pet?.homeStatus}{" "}
         </Paragraph>
       </Card.Actions>
     </Card>

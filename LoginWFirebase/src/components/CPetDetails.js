@@ -21,13 +21,13 @@ export default function CPetDetails({ pet }) {
         </Paragraph>
         <Paragraph style={{ marginTop: 12 }}>Breed: {pet?.breed} </Paragraph>
         <Paragraph style={{ marginTop: 12 }}>Gender: {pet?.gender} </Paragraph>
-        <Paragraph styl e={{ marginTop: 12 }}>
+        <Paragraph style={{ marginTop: 12 }}>
           Date Of Birth: {getFormattedDate(new Date(pet?.dateOfBirth?.seconds))}{" "}
         </Paragraph>
-        <Paragraph styl e={{ marginTop: 12 }}>
+        <Paragraph style={{ marginTop: 12 }}>
           Homing Status: {pet?.homeStatus}{" "}
         </Paragraph>
-        <Paragraph styl e={{ marginTop: 12 }}>
+        <Paragraph style={{ marginTop: 12 }}>
           Dessex Status: {pet?.desexStatus}{" "}
         </Paragraph>
         <Paragraph >

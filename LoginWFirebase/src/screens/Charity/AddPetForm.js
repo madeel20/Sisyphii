@@ -23,10 +23,10 @@ function AddPetForm({ navigation }) {
     dateOfBirth: new Date(),
     species: "",
     breed: "",
-    gender: "male",
-    desexStatus: "",
-    vaccination: "vaccinated",
-    homeStatus: "",
+    gender: "Male",
+    desexStatus: "Desexed",
+    vaccination: "Vaccinated",
+    homeStatus: "Adopted",
   });
   const [loading, setLoading] = useState(false);
 
@@ -50,10 +50,10 @@ function AddPetForm({ navigation }) {
           dateOfBirth: new Date(),
           species: "",
           breed: "",
-          gender: "male",
-          desexStatus: "",
-          vaccination: "vaccinated",
-          homeStatus: "",
+          gender: "Male",
+          desexStatus: "Desexed",
+          vaccination: "Vaccinated",
+          homeStatus: "Adopted",
         });
         navigation.navigate("PetList");
       })
@@ -114,19 +114,21 @@ function AddPetForm({ navigation }) {
             setValues((prev) => ({ ...prev, gender: value }))
           }
           options={[
-            { label: "Male", value: "male" },
-            { label: "Female", value: "female" },
+            { label: "Male", value: "Male" },
+            { label: "Female", value: "Female" },
           ]}
         />
 
-        <TextInput
+        <CSelect
           label="Desex Status"
-          returnKeyType="next"
           value={values?.desexStatus}
-          onChangeText={(text) =>
-            setValues((prev) => ({ ...prev, desexStatus: text }))
+          setValue={(value) =>
+            setValues((prev) => ({ ...prev, desexStatus: value }))
           }
-          autoCapitalize="none"
+          options={[
+            { label: "Desexed", value: "Desexed" },
+            { label: "Not Desexed", value: "notDesexed" },
+          ]}
         />
 
         <CSelect
@@ -136,19 +138,22 @@ function AddPetForm({ navigation }) {
             setValues((prev) => ({ ...prev, vaccination: value }))
           }
           options={[
-            { label: "Vaccinated", value: "vaccinated" },
-            { label: "Not Vaccinated", value: "Not Vaccinated" },
+            { label: "Vaccinated", value: "Vaccinated" },
+            { label: "Not Vaccinated", value: "notVaccinated" },
           ]}
         />
 
-        <TextInput
-          label="Home Status"
-          returnKeyType="next"
+        <CSelect
+          label="Homing Status"
           value={values?.homeStatus}
-          onChangeText={(text) =>
-            setValues((prev) => ({ ...prev, homeStatus: text }))
+          setValue={(value) =>
+            setValues((prev) => ({ ...prev, homeStatus: value }))
           }
-          autoCapitalize="none"
+          options={[
+            { label: "Adopted", value: "Adopted" },
+            { label: "Being Fostered", value: "beingFostered" },
+            { label: "At Adoption Centre", value: "atCentre" },
+          ]}
         />
 
         <CImagePicker
