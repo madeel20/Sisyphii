@@ -6,10 +6,20 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import CPetItem from "../../components/CPetItem";
 import { Searchbar } from "react-native-paper";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Filters from "./Filters";
+import { getAge } from "../../api/utils";
 
 export default function UserHome({ navigation }) {
   const [pets, setPets] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState(pets);
+  const [filters, setFilters] = useState({
+    gender: "",
+    breed: "",
+    age: "",
+  });
+  const [showFilters, setShowFilters] = useState(false);
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
@@ -28,28 +38,102 @@ export default function UserHome({ navigation }) {
     return unsubscribe;
   }, []);
 
-  let filteredItems = [...pets];
+  useEffect(() => {
+    applyFilters();
+  }, [pets, filters, searchQuery]);
 
-  if (searchQuery) {
-    filteredItems = filteredItems.filter((eachPet) =>
-      eachPet?.name?.toLowerCase()?.includes(searchQuery?.toLowerCase())
-    );
-  }
+  console.log(filters);
+
+  const applyFilters = () => {
+    let filteredItems = [...pets];
+
+    if (searchQuery) {
+      filteredItems = filteredItems.filter((eachPet) =>
+        eachPet?.name?.toLowerCase()?.includes(searchQuery?.toLowerCase())
+      );
+    }
+
+    if (filters.gender) {
+      filteredItems = filteredItems.filter(
+        (eachPet) =>
+          eachPet?.gender?.toLowerCase() === filters.gender?.toLowerCase()
+      );
+    }
+
+    if (filters.age) {
+      switch (filters.age) {
+        case '1':
+          filteredItems = filteredItems.filter(
+            (eachPet) =>
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) <= 1
+          );
+          break;
+        case '2':
+          filteredItems = filteredItems.filter(
+            (eachPet) =>
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) <= 2
+          );
+          break;
+        case '3':
+          filteredItems = filteredItems.filter(
+            (eachPet) =>
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) > 2
+          );
+          break;
+      }
+    }
+
+    if (filters.breed) {
+      filteredItems = filteredItems.filter(
+        (eachPet) =>
+          eachPet?.breed?.toLowerCase() === filters.breed?.toLowerCase()
+      );
+    }
+
+    setFilteredData(filteredItems);
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      gender: "",
+      breed: "",
+      age: "",
+    });
+    setShowFilters(false);
+  };
 
   return (
     <View style={styles.container}>
       <TopBar title="Home" />
 
       <Text style={styles.heading}>Find Your Forever friend</Text>
-      <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        style={{ marginBottom: 20 }}
-      />
+      <View style={styles.searchbarWrapper}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        />
+        <AntDesign
+          onPress={() => setShowFilters((prev) => !prev)}
+          name="filter"
+          style={{ marginLeft: 8 }}
+          size={34}
+          color="black"
+        />
+      </View>
+
+      {showFilters ? (
+        <Filters
+          onClearFilter={clearFilters}
+          setFilters={setFilters}
+          filters={filters}
+          data={pets}
+        />
+      ) : null}
+
       <ScrollView style={{ width: "100%", flex: 1, paddingHorizontal: 15 }}>
         <View style={styles.petsContainer}>
-          {filteredItems.map((eachPet) => {
+          {filteredData.map((eachPet) => {
             return (
               <CPetItem
                 onClick={() =>
@@ -80,5 +164,11 @@ const styles = StyleSheet.create({
   petsContainer: {
     width: "100%",
     flex: 1,
+  },
+  searchbarWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
   },
 });
