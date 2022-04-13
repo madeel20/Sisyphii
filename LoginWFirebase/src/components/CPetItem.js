@@ -16,7 +16,7 @@ export default function CPetItem({ pet, onClick }) {
       <Card.Content>
         <Card.Cover
           source={{
-            uri: "https://thumbs.dreamstime.com/b/dog-collection-chihuahua-geometric-style-avatar-icon-round-set-88200175.jpg",
+            uri: pet?.image || "https://thumbs.dreamstime.com/b/dog-collection-chihuahua-geometric-style-avatar-icon-round-set-88200175.jpg",
           }}
         />
         {/* <Title>Name: {pet?.name}</Title> */}

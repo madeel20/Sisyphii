@@ -34,9 +34,9 @@ export default function CPetDetails({ pet }) {
           Vaccinated: {pet?.vaccination},
         </Paragraph>
       </Card.Content>
-      <Card.Cover
+      <Card.Cover 
         source={{
-          uri: "https://thumbs.dreamstime.com/b/dog-collection-chihuahua-geometric-style-avatar-icon-round-set-88200175.jpg",
+          uri: pet?.image || "https://thumbs.dreamstime.com/b/dog-collection-chihuahua-geometric-style-avatar-icon-round-set-88200175.jpg",
         }}
       />
     </Card>

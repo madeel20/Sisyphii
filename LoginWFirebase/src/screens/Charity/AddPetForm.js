@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   ScrollView,
@@ -12,40 +12,23 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { CDatePicker } from "../../components/CDatePicker";
 import CSelect from "../../components/CSelect";
 import firebase from "firebase/app";
+import 'firebase/storage'
 import "firebase/auth";
 import Background from "../../components/Background";
 import { theme } from "../../core/theme";
 import CImagePicker from "../../components/CImagePicker";
+import { storage } from "../../../App";
+import { uploadImage } from "../../api/utils";
 
-function AddPetForm({ navigation }) {
-  const [values, setValues] = useState({
-    name: "",
-    dateOfBirth: new Date(),
-    species: "",
-    breed: "",
-    gender: "male",
-    desexStatus: "",
-    vaccination: "vaccinated",
-    homeStatus: "",
-  });
-  const [loading, setLoading] = useState(false);
-
-  const onSubmit = () => {
-    if (Object.values(values).some((e) => !e)) {
-      alert("Please fill all the fields!");
-      return;
-    }
-    setLoading(true);
-    firebase
-      .firestore()
-      .collection("pets")
-      .add({
-        uid: firebase.auth().currentUser.uid,
-        ...values,
-      })
-      .then((res) => {
-        alert("Pet added!");
-        setValues({
+function AddPetForm({ navigation, route }) {
+  const { pet = null, petId = null } = route.params || {};
+  const [values, setValues] = useState(
+    pet
+      ? {
+          ...pet,
+          dateOfBirth: new Date(pet?.dateOfBirth?.seconds * 1000),
+        }
+      : {
           name: "",
           dateOfBirth: new Date(),
           species: "",
@@ -54,11 +37,147 @@ function AddPetForm({ navigation }) {
           desexStatus: "",
           vaccination: "vaccinated",
           homeStatus: "",
-        });
-        navigation.navigate("PetList");
-      })
-      .finally(() => setLoading(false));
+          image: '',
+        }
+  );
+  const [loading, setLoading] = useState(false);
+  const [isImageChanged,  setIsImageChanged] = useState(false);
+
+  useEffect(() => {
+    console.log('route.params?.pet',route.params?.pet)
+    setValues(
+      route.params?.pet
+        ? {
+            ...route.params?.pet,
+            dateOfBirth: new Date(route.params?.pet?.dateOfBirth?.seconds * 1000),
+          }
+        : {
+            name: "",
+            dateOfBirth: new Date(),
+            species: "",
+            breed: "",
+            gender: "male",
+            desexStatus: "",
+            vaccination: "vaccinated",
+            homeStatus: "",
+            image: '',
+          }
+    );
+  }, [route.params?.pet]);
+
+  const onSubmit = async () => {
+    if (Object.values(values).some((e) => !e)) {
+      alert("Please fill all the fields!");
+      return;
+    }
+    setLoading(true);
+  let payload = {...values};
+  delete payload.image;
+
+    if (!pet)
+      firebase
+        .firestore()
+        .collection("pets")
+        .add({
+          uid: firebase.auth().currentUser.uid,
+          ...payload,
+        })
+        .then(async (res) => {
+          
+          if(values.image) {
+          let url = await uploadImage({
+            name: 'abc.png',
+            image: values.image
+          });
+
+          await res.update({
+             image:  url
+          })
+        }
+
+          setValues({
+            name: "",
+            dateOfBirth: new Date(),
+            species: "",
+            breed: "",
+            gender: "male",
+            desexStatus: "",
+            vaccination: "vaccinated",
+            homeStatus: "",
+            image: '',
+          });
+          navigation.navigate("PetList");
+          alert("Pet added!");
+
+        })
+        .finally(() => setLoading(false));
+    else
+      firebase
+        .firestore()
+        .collection("pets")
+        .doc(petId)
+        .update({
+          ...payload,
+        })
+        .then(async (res) => {
+
+          if(values.image && isImageChanged) {
+            let url = await uploadImage({
+              name: 'abc.png',
+              image: values.image
+            });
+            await  firebase
+            .firestore()
+            .collection("pets")
+            .doc(petId)
+            .update({
+              image:  url
+            });
+          }
+
+          setValues({
+            name: "",
+            dateOfBirth: new Date(),
+            species: "",
+            breed: "",
+            gender: "male",
+            desexStatus: "",
+            vaccination: "vaccinated",
+            homeStatus: "",
+            image: '',
+          });
+          alert("Pet Updated!");
+          navigation.navigate("PetList");
+
+        })
+        .finally(() => setLoading(false));
   };
+
+  
+
+  const onDelete = () => {
+    setLoading(true);
+    firebase
+        .firestore()
+        .collection("pets")
+        .doc(petId)
+        .delete()
+        .then((res) => {
+          alert("Pet Deleted!");
+          setValues({
+            name: "",
+            dateOfBirth: new Date(),
+            species: "",
+            breed: "",
+            gender: "male",
+            desexStatus: "",
+            vaccination: "vaccinated",
+            homeStatus: "",
+          });
+          navigation.navigate("PetList");
+        })
+        .finally(() => setLoading(false));
+  }
 
   if (loading) {
     return (
@@ -71,7 +190,8 @@ function AddPetForm({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.heading}>Add a Pet</Text>
+        <Button onPress={() => navigation.goBack()}>Go Back</Button>
+        <Text style={styles.heading}>{pet ? "Edit a pet" : "Add a Pet"}</Text>
         <TextInput
           label="Name"
           returnKeyType="next"
@@ -153,12 +273,20 @@ function AddPetForm({ navigation }) {
 
         <CImagePicker
           image={values.image}
-          setImage={(image) => setValues((prev) => ({ ...prev, image }))}
+          setImage={(image) => {
+            setValues((prev) => ({ ...prev, image }));
+            setIsImageChanged(true);
+          }}
         />
 
         <Button mode="contained" onPress={onSubmit} style={{ width: 300 }}>
-          Add Pet
+          {pet ? "Save" : "Add Pet"}
         </Button>
+        {pet && (
+          <Button onPress={onDelete} style={{ width: 300 }}>
+            Delete
+          </Button>
+        )}
       </View>
     </ScrollView>
   );

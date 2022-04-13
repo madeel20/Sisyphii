@@ -31,7 +31,7 @@ export default function PetList({ navigation }) {
       <View style={styles.container}>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate("AddAPetForm")}
+          onPress={() => navigation.navigate("AddAPetForm",{pet:null,petId:null})}
           style={{ width: 300 }}
         >
           Add a Pet
@@ -39,10 +39,21 @@ export default function PetList({ navigation }) {
 
         <Text style={styles.heading}>My Pets</Text>
 
-        <ScrollView style={{width:'100%', flex:1, paddingHorizontal:15}}>
+        <ScrollView style={{ width: "100%", flex: 1, paddingHorizontal: 15 }}>
           <View style={styles.petsContainer}>
             {pets.map((eachPet) => {
-              return <CPetItem pet={eachPet.data()} />;
+              return (
+                <CPetItem
+                key={eachPet.id}
+                  onClick={() =>
+                    navigation.navigate("AddAPetForm", {
+                      pet: eachPet.data(),
+                      petId: eachPet.id,
+                    })
+                  }
+                  pet={eachPet.data()}
+                />
+              );
             })}
           </View>
         </ScrollView>
@@ -61,7 +72,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   petsContainer: {
-      width:'100%',
-      flex:1
-  }
+    width: "100%",
+    flex: 1,
+  },
 });
