@@ -44,7 +44,6 @@ function AddPetForm({ navigation, route }) {
   const [isImageChanged,  setIsImageChanged] = useState(false);
 
   useEffect(() => {
-    console.log('route.params?.pet',route.params?.pet)
     setValues(
       route.params?.pet
         ? {
@@ -66,6 +65,7 @@ function AddPetForm({ navigation, route }) {
   }, [route.params?.pet]);
 
   const onSubmit = async () => {
+
     if (Object.values(values).some((e) => !e)) {
       alert("Please fill all the fields!");
       return;
@@ -86,8 +86,8 @@ function AddPetForm({ navigation, route }) {
           
           if(values.image) {
           let url = await uploadImage({
-            name: 'abc.png',
-            image: values.image
+            name: res.id,
+            image: values.image.base64
           });
 
           await res.update({
@@ -123,8 +123,8 @@ function AddPetForm({ navigation, route }) {
 
           if(values.image && isImageChanged) {
             let url = await uploadImage({
-              name: 'abc.png',
-              image: values.image
+              name: petId,
+              image: values.image.base64
             });
             await  firebase
             .firestore()

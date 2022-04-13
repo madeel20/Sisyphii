@@ -10,23 +10,23 @@ export default function CImagePicker({
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
+      allowsMultipleSelection: false,
       aspect: [4, 3],
       quality: 1,
+      base64: true
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      setImage(result.uri);
+      setImage({uri: result.uri, base64: result.base64 });
     }
   };
 
   return (
     <View style={{ marginVertical:30, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {image && <Image source={{ uri: image }} style={{ width: 100, height: 100, marginTop:10 }} />}
+      {image ? <Image source={{ uri: image.uri }} style={{ width: 100, height: 100, marginTop:10 }} /> : null}
     </View>
   );
 }

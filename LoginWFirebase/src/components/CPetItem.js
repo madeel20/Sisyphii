@@ -7,6 +7,7 @@ import {
   Paragraph,
   Title,
 } from "react-native-paper";
+import { getAge } from "../api/utils";
 import { theme } from "../core/theme";
 
 export default function CPetItem({ pet, onClick }) {
@@ -26,7 +27,7 @@ export default function CPetItem({ pet, onClick }) {
       </Card.Content>
       <Card.Actions>
         <Paragraph style={{marginLeft:10}}>
-          Vaccinated: {pet?.vaccination}, Homing Status: {pet?.homeStatus},{" "}
+          Age: {getAge(new Date(pet?.dateOfBirth?.seconds * 1000))}, Homing Status: {pet?.homeStatus},{" "}
         </Paragraph>
       </Card.Actions>
     </Card>
