@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Platform } from "react-native";
 import { storage } from "../../App";
 export const getFormattedDate = date=>  date.getDate()  + "-" + (date.getMonth()+1) + "-" + date.getFullYear()
@@ -16,15 +17,30 @@ export const uploadImage = async ({name, image }) =>{
     }
   }
 
-  export function getAge(birthDate) 
-  {
+  export function getAge(birthDate,withUnit=true) {
       var today = new Date();
-      var age = today.getFullYear() - birthDate.getFullYear();
-      var m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-      {
-          age--;
+
+      let age = 0;
+      let unit = '';
+  
+      if(moment(today).diff(birthDate,'years') > 0 ){
+        age =  moment(today).diff(birthDate,'years');
+        unit  = 'years';
       }
-      return age;
+      
+      else if(moment(today).diff(birthDate,'months') > 0 ){
+        age =  moment(today).diff(birthDate,'months');
+        unit  = 'months';
+      }
+
+      else {
+        age =  moment(today).diff(birthDate,'days');
+        unit  = 'days';
+      }
+
+      if(withUnit)
+      return age + ' '+unit;
+
+      return moment(today).diff(birthDate,'days') ;
   }
 

@@ -28,6 +28,7 @@ import AddPetForm from "./src/screens/Charity/AddPetForm";
 import PetList from "./src/screens/Charity/PetList";
 import CharityProfile from "./src/screens/Charity/Profile";
 import PetDetails from "./src/screens/User/PetDetails";
+import { LogBox } from 'react-native';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,6 +36,9 @@ const Tab = createBottomTabNavigator();
 if (!firebase.apps.length) {
   firebase.initializeApp(FIREBASE_CONFIG);
 }
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export const storage = firebase.storage().ref();
 

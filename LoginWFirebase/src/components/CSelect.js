@@ -7,7 +7,7 @@ const CSelect = ({ label, value, setValue, options = [] }) => {
       <Text style={styles.label}>{label}</Text>
       <Picker
         selectedValue={value}
-        style={{ height: 50, width: 150, }}
+        style={{ height: 30, width: 150, }}
         onValueChange={(itemValue, itemIndex) => setValue(itemValue)}
       >
         {options.map((eachOption) => {

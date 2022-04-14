@@ -17,7 +17,6 @@ export default function CImagePicker({
       quality: 1,
       base64: true
     });
-
     if (!result.cancelled) {
       setImage({uri: result.uri, base64: result.base64 });
     }

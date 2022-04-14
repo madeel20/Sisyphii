@@ -42,8 +42,6 @@ export default function UserHome({ navigation }) {
     applyFilters();
   }, [pets, filters, searchQuery]);
 
-  console.log(filters);
-
   const applyFilters = () => {
     let filteredItems = [...pets];
 
@@ -59,25 +57,33 @@ export default function UserHome({ navigation }) {
           eachPet?.gender?.toLowerCase() === filters.gender?.toLowerCase()
       );
     }
-
     if (filters.age) {
-      switch (filters.age) {
-        case '1':
+      switch (parseInt(filters.age)) {
+        case 1:
+          filteredItems = filteredItems.filter((eachPet) => {
+            return (
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000), false) <= 7
+            );
+          });
+          break;
+        case 2:
           filteredItems = filteredItems.filter(
             (eachPet) =>
-              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) <= 1
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000), false) <=
+              30
           );
           break;
-        case '2':
+        case 3:
+          filteredItems = filteredItems.filter(
+            (eachPet) => {
+             return  getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000), false) <= 90
+            }
+            );
+            break;
+        case 4:
           filteredItems = filteredItems.filter(
             (eachPet) =>
-              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) <= 2
-          );
-          break;
-        case '3':
-          filteredItems = filteredItems.filter(
-            (eachPet) =>
-              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000)) > 2
+              getAge(new Date(eachPet?.dateOfBirth?.seconds * 1000), false) > 90
           );
           break;
       }
@@ -89,7 +95,6 @@ export default function UserHome({ navigation }) {
           eachPet?.breed?.toLowerCase() === filters.breed?.toLowerCase()
       );
     }
-
     setFilteredData(filteredItems);
   };
 
@@ -112,10 +117,11 @@ export default function UserHome({ navigation }) {
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
+          style={{ flex: 1 }}
         />
         <AntDesign
           onPress={() => setShowFilters((prev) => !prev)}
-          name="filter"
+          name={showFilters ? "close" : "filter"}
           style={{ marginLeft: 8 }}
           size={34}
           color="black"
@@ -170,5 +176,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
+    marginHorizontal: 20,
   },
 });
