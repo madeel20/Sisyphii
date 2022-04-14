@@ -12,13 +12,25 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { CDatePicker } from "../../components/CDatePicker";
 import CSelect from "../../components/CSelect";
 import firebase from "firebase/app";
-import 'firebase/storage'
+import "firebase/storage";
 import "firebase/auth";
 import Background from "../../components/Background";
 import { theme } from "../../core/theme";
 import CImagePicker from "../../components/CImagePicker";
 import { storage } from "../../../App";
 import { uploadImage } from "../../api/utils";
+
+const defaultValues = {
+  name: "",
+  dateOfBirth: new Date(),
+  species: "",
+  breed: "",
+  gender: "male",
+  desexStatus: "desexed",
+  vaccination: "vaccinated",
+  homeStatus: "at adoption centre",
+  image: "",
+};
 
 function AddPetForm({ navigation, route }) {
   const { pet = null, petId = null } = route.params || {};
@@ -28,51 +40,34 @@ function AddPetForm({ navigation, route }) {
           ...pet,
           dateOfBirth: new Date(pet?.dateOfBirth?.seconds * 1000),
         }
-      : {
-          name: "",
-          dateOfBirth: new Date(),
-          species: "",
-          breed: "",
-          gender: "male",
-          desexStatus: "",
-          vaccination: "vaccinated",
-          homeStatus: "",
-          image: '',
-        }
+      : defaultValues
   );
   const [loading, setLoading] = useState(false);
-  const [isImageChanged,  setIsImageChanged] = useState(false);
+  const [isImageChanged, setIsImageChanged] = useState(false);
 
   useEffect(() => {
     setValues(
       route.params?.pet
         ? {
             ...route.params?.pet,
-            dateOfBirth: new Date(route.params?.pet?.dateOfBirth?.seconds * 1000),
+            dateOfBirth: new Date(
+              route.params?.pet?.dateOfBirth?.seconds * 1000
+            ),
           }
-        : {
-            name: "",
-            dateOfBirth: new Date(),
-            species: "",
-            breed: "",
-            gender: "male",
-            desexStatus: "",
-            vaccination: "vaccinated",
-            homeStatus: "",
-            image: '',
-          }
+        : defaultValues
     );
   }, [route.params?.pet]);
 
   const onSubmit = async () => {
-
-    if (Object.values(values).some((e) => !e)) {
+    if (
+      Object.entries(values).some(([name, e]) => (name === "image" ? false : !e))
+    ) {
       alert("Please fill all the fields!");
       return;
     }
     setLoading(true);
-  let payload = {...values};
-  delete payload.image;
+    let payload = { ...values };
+    delete payload.image;
 
     if (!pet)
       firebase
@@ -83,32 +78,20 @@ function AddPetForm({ navigation, route }) {
           ...payload,
         })
         .then(async (res) => {
-          
-          if(values.image) {
-          let url = await uploadImage({
-            name: res.id,
-            image: values.image.base64
-          });
+          if (values.image) {
+            let url = await uploadImage({
+              name: res.id,
+              image: values.image.base64,
+            });
 
-          await res.update({
-             image:  url
-          })
-        }
+            await res.update({
+              image: url,
+            });
+          }
 
-          setValues({
-            name: "",
-            dateOfBirth: new Date(),
-            species: "",
-            breed: "",
-            gender: "male",
-            desexStatus: "",
-            vaccination: "vaccinated",
-            homeStatus: "",
-            image: '',
-          });
+          setValues(defaultValues);
           navigation.navigate("PetList");
           alert("Pet added!");
-
         })
         .finally(() => setLoading(false));
     else
@@ -120,64 +103,46 @@ function AddPetForm({ navigation, route }) {
           ...payload,
         })
         .then(async (res) => {
-
-          if(values.image && isImageChanged) {
+          if (values.image && isImageChanged) {
             let url = await uploadImage({
               name: petId,
-              image: values.image.base64
+              image: values.image.base64,
             });
-            await  firebase
-            .firestore()
-            .collection("pets")
-            .doc(petId)
-            .update({
-              image:  url
+            await firebase.firestore().collection("pets").doc(petId).update({
+              image: url,
             });
           }
 
-          setValues({
-            name: "",
-            dateOfBirth: new Date(),
-            species: "",
-            breed: "",
-            gender: "male",
-            desexStatus: "",
-            vaccination: "vaccinated",
-            homeStatus: "",
-            image: '',
-          });
+          setValues(defaultValues);
           alert("Pet Updated!");
           navigation.navigate("PetList");
-
         })
         .finally(() => setLoading(false));
   };
 
-  
-
   const onDelete = () => {
     setLoading(true);
     firebase
-        .firestore()
-        .collection("pets")
-        .doc(petId)
-        .delete()
-        .then((res) => {
-          alert("Pet Deleted!");
-          setValues({
-            name: "",
-            dateOfBirth: new Date(),
-            species: "",
-            breed: "",
-            gender: "male",
-            desexStatus: "",
-            vaccination: "vaccinated",
-            homeStatus: "",
-          });
-          navigation.navigate("PetList");
-        })
-        .finally(() => setLoading(false));
-  }
+      .firestore()
+      .collection("pets")
+      .doc(petId)
+      .delete()
+      .then((res) => {
+        alert("Pet Deleted!");
+        setValues({
+          name: "",
+          dateOfBirth: new Date(),
+          species: "",
+          breed: "",
+          gender: "male",
+          desexStatus: "",
+          vaccination: "vaccinated",
+          homeStatus: "",
+        });
+        navigation.navigate("PetList");
+      })
+      .finally(() => setLoading(false));
+  };
 
   if (loading) {
     return (
@@ -239,14 +204,17 @@ function AddPetForm({ navigation, route }) {
           ]}
         />
 
-        <TextInput
+        <CSelect
           label="Desex Status"
           returnKeyType="next"
           value={values?.desexStatus}
-          onChangeText={(text) =>
-            setValues((prev) => ({ ...prev, desexStatus: text }))
+          setValue={(value) =>
+            setValues((prev) => ({ ...prev, desexStatus: value }))
           }
-          autoCapitalize="none"
+          options={[
+            { label: "Desexed", value: "desexed" },
+            { label: "Not desexed", value: "not desexed" },
+          ]}
         />
 
         <CSelect
@@ -261,13 +229,17 @@ function AddPetForm({ navigation, route }) {
           ]}
         />
 
-        <TextInput
+        <CSelect
           label="Home Status"
-          returnKeyType="next"
           value={values?.homeStatus}
-          onChangeText={(text) =>
-            setValues((prev) => ({ ...prev, homeStatus: text }))
+          setValue={(value) =>
+            setValues((prev) => ({ ...prev, homeStatus: value }))
           }
+          options={[
+            { label: "At adoption centre", value: "at adoption centre" },
+            { label: "Adopted", value: "adopted" },
+            { label: "Foster", value: "foster" },
+          ]}
           autoCapitalize="none"
         />
 
